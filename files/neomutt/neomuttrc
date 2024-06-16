@@ -1,0 +1,9 @@
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+source /home/sixten/.config/neomutt/accounts/gmail/gmailrc
+
+macro index,pager T "<pipe-message>grep -E '^From: '| xargs -I {} /home/sixten/Programs/toggle_todo.sh '{}'<enter>" "Toggle email subject in todo.txt"
+
+source vim-keys.rc
+

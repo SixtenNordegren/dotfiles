@@ -1,0 +1,18 @@
+[font]
+size = 13
+
+[font.bold]
+family = "HackNerdFontMono"
+style = "Bold"
+
+[font.bold_italic]
+family = "HackNerdFontMono"
+style = "Bold Italic"
+
+[font.italic]
+family = "HackNerdFontMono"
+style = "Italic"
+
+[font.normal]
+family = "HackNerdFontMono"
+style = "Regular"

@@ -1,0 +1,19 @@
+font:
+  normal:
+    family: HackNerdFontMono
+    style: Regular
+
+  bold:
+    family: HackNerdFontMono
+    style: Bold
+
+  italic:
+    family: HackNerdFontMono
+    style: Italic
+
+  bold_italic:
+    family: HackNerdFontMono
+    style: Bold Italic
+
+  size: 9
+
