@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-FILEPATH=$(pwd) #This is not good design
+FILEPATH="/home/sixten/Projects/dotfiles/"
 CONFIGS=$(ls "$FILEPATH/files")
 SCRIPT_DIR="$HOME/.config"
-read -p "Is $SCRIPT_DIR the correct path for your config files(y/n)?" -n 1 -r
-echo
 
 install_config() {
 	CHECKFILE="$FILEPATH/testdir/$FILE"
@@ -13,9 +11,12 @@ install_config() {
 		REPOPATH="$FILEPATH/files/$FILE"
 		INSTALLPATH="$FILEPATH/testdir"
 
-		cp -r "$REPOPATH" "$INSTALLPATH" && echo "Moved $FILE to $INSTALLPATH."
+		ln "$REPOPATH" "$INSTALLPATH" && echo "Moved $FILE to $INSTALLPATH."
 	fi
 }
+
+read -p "Is $SCRIPT_DIR the correct path for your config files(y/n)?" -n 1 -r
+echo
 
 if [ "$REPLY" = "y" ]; then
 	for FILE in $CONFIGS; do
