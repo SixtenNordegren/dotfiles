@@ -1,0 +1,54 @@
+# Ignore Vim swap files
+*.swp
+*.swo
+*.sw~
+
+# Ignore Emacs backup files
+*~
+.#*
+
+# Ignore temporary files created by editors or the system
+*.tmp
+*.bak
+*.backup
+*.log
+*.lock
+*.DS_Store
+*.Thumbs.db
+
+# Ignore macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore compiled files
+*.o
+*.out
+*.a
+*.so
+
+# Ignore stow generated symlinks
+.stow-local/
+
+# Ignore compressed files
+*.zip
+*.tar.gz
+*.tar.bz2
+*.gz
+
+# Ignore node_modules (common in JavaScript projects)
+node_modules/
+
+# Ignore temporary files from text editors
+*~
+*.bak
+*.orig
