@@ -1,4 +1,5 @@
 return {
+	-- This is the formatter. In case you forget. Again..
 	"stevearc/conform.nvim",
 	lazy = false,
 	keys = {

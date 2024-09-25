@@ -12,13 +12,18 @@ return {
 	},
 	dependencies = {
 		-- Required.
+		"hrsh7th/nvim-cmp",
 		"nvim-lua/plenary.nvim",
 	},
 	opts = {
 		workspaces = {
 			{
-				name = "Notes",
+				name = "Personal notes",
 				path = "/home/sixten/Documents/Obsidian Vault/",
+			},
+			{
+				name = "CFT project",
+				path = "/home/sixten/Documents/CFT_notes/",
 			},
 		},
 
@@ -27,6 +32,5 @@ return {
 			min_chars = 2,
 		},
 		-- disable_frontmatter = true,
-		-- see below for full list of options 👇
 	},
 }
