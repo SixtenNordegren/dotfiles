@@ -25,8 +25,8 @@ return {
 			lua = { "stylua" },
 			python = { "autopep8" },
 			latex = { "latexindent" },
-			markdown = { "mdformat" },
-			shell = { "shfmt " },
+			shell = { "shfmt" },
+			html = { "htmlbeautifier" },
 		},
 	},
 }
