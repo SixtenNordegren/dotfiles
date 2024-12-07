@@ -43,13 +43,28 @@
 # Get the current directory
 Current_Dir=$(pwd)
 
+echo "make sure this script is run from the dotfiles directory, and is run with sudo"
+read -p "Press y to continue, n to exit" -n 1 -r
 
-# Install the dotfiles
+# Check if the file system is created, i.e. the Documents, Downloads,
+# Projects, and Tools directories are created.
+# If they are not created, create them.
+if [ ! -d ~/Documents ]; then
+    mkdir ~/Documents ~/Downloads ~/Projects ~/Tools
+fi
+
 ./stow_dotfiles.sh
+# we need to stop the script here if the stow command fails
+if [ $? -ne 0 ]; then
+    echo "The stow command failed, please check the error message and try again."
+    exit 1
+fi
 
 # Update and upgrade the system
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y xinit i3 firefox rofi python3-pip cargo
+apt update && apt upgrade -y
+apt install -y xinit i3 firefox rofi python3-pip cargo vifm neomutt
+# install transparency for i3
+apt install -y compton
 cargo install typeracer # Non-essential package, but fun to have
 
 # Create github ssh key, only local side is done here. The public key still
@@ -69,12 +84,12 @@ mkdir Tools
 cd Tools
 git clone https://github.com/neovim/neovim.git
 cd neovim 
-sudo apt-get install ninja-build gettext cmake unzip curl build-essential # install the needed dependencies
+apt-get install ninja-build gettext cmake unzip curl build-essential # install the needed dependencies
 
 # Non-essential dependencies
-sudo apt install nodejs npm ripgrep 
+apt install nodejs npm ripgrep 
 make CMAKE_BUILD_TYPE=Release
-sudo make install
+make install
 
 # Download the hack font and install it
 cd ~/Downloads
@@ -84,7 +99,7 @@ mkdir -p ~/.local/share/fonts
 mv Hack/*.ttf ~/.local/share/fonts
 
 # Set alacritty as the default terminal
-sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/alacritty 50
+update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/alacritty 50
 
 # Source the bashrc file from the dotfiles
 rm ~/.bashrc
@@ -97,7 +112,7 @@ touch ~/.xinitrc
 echo "exec i3" > ~/.xinitrc
 
 cd Current_Dir
-sudo apt autoremove -y
+apt autoremove -y
 
 echo "do startx to start the i3 window manager"
 echo "Remember to add the public ssh key to your github account"
