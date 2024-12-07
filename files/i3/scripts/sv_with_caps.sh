@@ -1,2 +1,2 @@
 setxkbmap -layout se
-xmodmap "$HOME/Projects/xmodmap/xmodmap"
+xmodmap ~/.config/i3/scripts/xmodmap
