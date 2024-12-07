@@ -86,10 +86,39 @@ git clone https://github.com/neovim/neovim.git
 cd neovim 
 apt-get install ninja-build gettext cmake unzip curl build-essential # install the needed dependencies
 
+
 # Non-essential dependencies
 apt install nodejs npm ripgrep 
+# Ensure we are on the stable branch
+git checkout stable
 make CMAKE_BUILD_TYPE=Release
 make install
+
+echo "Installing Zathura"
+# Download zathura and install it, along the following plugins:
+# zathura-pdf-poppler, zathura-ps, zathura-djvu
+cd ~/Downloads
+# Installing the girara dependency from source
+git clone https://git.pwmt.org/pwmt/girara.git
+cd girara 
+meson build
+cd build
+ninja
+ninja install
+
+# Moving on to zathura
+cd ~/Downloads
+wget https://pwmt.org/projects/zathura/download/zathura-0.5.8.tar.xz
+tar -xf zathura-0.5.8.tar.xz
+cd zathura-0.5.8
+# Install the dependencies including poppler-glib
+apt install libgtk-3-dev libglib2.0-dev libgirara-dev libmagic-dev libjson-glib-dev libsqlite3-dev libsynctex-dev libseccomp-dev meson gettext pkgconf, libpoppler-glib-dev, lib-girara-gtk3-dev
+
+# Install zathura
+meson build
+cd build
+ninja
+ninja install
 
 # Download the hack font and install it
 cd ~/Downloads
