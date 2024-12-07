@@ -54,13 +54,13 @@ for_window [class="todo_list"] floating enable, resize set 800 600, move positio
 
 # start a terminal
 set $TERMINAL /home/sixten/.cargo/bin/alacritty
-bindsym $mod+Return exec /home/sixten/.cargo/bin/alacritty -e tmux
+bindsym $mod+Return exec alacritty -e tmux
 # start file explorer
-bindsym $mod+Shift+f exec /home/sixten/.cargo/bin/alacritty -e vifm
+bindsym $mod+Shift+f exec  -e vifm
 # Email 
-bindsym $mod+Shift+m exec /home/sixten/.cargo/bin/alacritty -e neomutt
+bindsym $mod+Shift+m exec alacritty -e neomutt
 # Todo list 
-# bindsym $mod+Shift+t exec /home/sixten/.cargo/bin/alacritty
+# bindsym $mod+Shift+t exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -74,8 +74,8 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 
 
 # Toggle languages
-bindsym F11 exec "/home/sixten/Projects/lang_with_caps/us_with_caps.sh"
-bindsym F12 exec "/home/sixten/Projects/lang_with_caps/sv_with_caps.sh"
+# bindsym F11 exec "$HOME/.config/i3/keyboard_settings/lang_with_caps/us_with_caps.sh"
+# bindsym F12 exec "/home/sixten/Projects/lang_with_caps/sv_with_caps.sh"
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+h focus left
