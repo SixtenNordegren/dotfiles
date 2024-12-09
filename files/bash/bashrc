@@ -99,6 +99,4 @@ eval "$(ssh-agent -s)"
 ssh-add -q ~/.ssh/keys
 
 # Add local bin directories to PATH
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH # For zathura
+# export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH # For zathura
