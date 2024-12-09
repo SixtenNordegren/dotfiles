@@ -115,12 +115,46 @@ cd zathura-0.5.8
 apt install libgtk-3-dev libglib2.0-dev libgirara-dev libmagic-dev libjson-glib-dev libsqlite3-dev libsynctex-dev libseccomp-dev meson gettext pkgconf, libpoppler-glib-dev, lib-girara-gtk3-dev
 
 # Install zathura
+echo "Installing zathura..."
 meson build
 cd build
 ninja
 ninja install
 
+# Install the plugins
+# zathura-pdf-poppler
+echo "Installing zathura-pdf-poppler..."
+cd ~/Downloads
+wget https://pwmt.org/projects/zathura-pdf-poppler/download/zathura-pdf-poppler-0.3.3.tar.xz
+tar -xf zathura-pdf-poppler-0.3.3.tar.xz
+cd zathura-pdf-poppler-0.3.3
+# Install the dependencies
+apt install libpoppler-glib-dev
+mkdir build
+meson build
+cd build
+ninja
+ninja install
+
+# zathura-djvu
+echo "Installing zathura-djvu..."
+cd ~/Downloads
+wget https://pwmt.org/projects/zathura-djvu/download/zathura-djvu-0.2.9.tar.xz
+tar -xf zathura-djvu-0.2.9.tar.xz
+cd zathura-djvu-0.2.9
+# Install the dependencies
+apt install libdjvulibre-dev
+mkdir build
+meson build
+cd build
+ninja
+ninja install
+
+# Clear the Downloads directory
+rm -rf ~/Downloads/zathura*
+
 # Download the hack font and install it
+echo "Installing the Hack font..."
 cd ~/Downloads
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
 unzip Hack.zip
@@ -145,4 +179,3 @@ apt autoremove -y
 
 echo "do startx to start the i3 window manager"
 echo "Remember to add the public ssh key to your github account"
-
