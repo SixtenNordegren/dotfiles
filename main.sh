@@ -62,13 +62,12 @@ fi
 
 # Update and upgrade the system
 apt update && apt upgrade -y
-apt install -y xinit i3 firefox rofi python3-pip cargo vifm neomutt
-# install transparency for i3
-apt install -y compton
+apt install -y xinit i3 firefox rofi python3-pip cargo vifm neomutt compton
 cargo install typeracer # Non-essential package, but fun to have
 
 # Create github ssh key, only local side is done here. The public key still
 # needs to be added to the github account.
+rm -rf ~/.ssh
 mkdir -p ~/.ssh
 cd ~/.ssh
 ssh-keygen -t rsa -b 4096 -C "sixten.nordegren@gmail.com"
@@ -86,7 +85,6 @@ git clone https://github.com/neovim/neovim.git
 cd neovim 
 apt-get install ninja-build gettext cmake unzip curl build-essential # install the needed dependencies
 
-
 # Non-essential dependencies
 apt install nodejs npm ripgrep 
 # Ensure we are on the stable branch
@@ -95,8 +93,20 @@ make CMAKE_BUILD_TYPE=Release
 make install
 
 echo "Installing Zathura"
-# Download zathura and install it, along the following plugins:
-# zathura-pdf-poppler, zathura-ps, zathura-djvu
+# Moving on to zathura
+cd ~/Downloads
+wget https://pwmt.org/projects/zathura/download/zathura-0.5.8.tar.xz
+tar -xf zathura-0.5.8.tar.xz
+cd zathura-0.5.8
+# Install the dependencies including poppler-glib
+apt install libgtk-3-dev libglib2.0-dev libgirara-dev libmagic-dev libjson-glib-dev libsqlite3-dev libsynctex-dev libseccomp-dev meson gettext pkgconf, libpoppler-glib-dev, lib-girara-gtk3-dev
+# Install zathura
+echo "Installing zathura..."
+meson build
+cd build
+ninja
+ninja install
+
 cd ~/Downloads
 # Installing the girara dependency from source
 git clone https://git.pwmt.org/pwmt/girara.git
@@ -106,20 +116,6 @@ cd build
 ninja
 ninja install
 
-# Moving on to zathura
-cd ~/Downloads
-wget https://pwmt.org/projects/zathura/download/zathura-0.5.8.tar.xz
-tar -xf zathura-0.5.8.tar.xz
-cd zathura-0.5.8
-# Install the dependencies including poppler-glib
-apt install libgtk-3-dev libglib2.0-dev libgirara-dev libmagic-dev libjson-glib-dev libsqlite3-dev libsynctex-dev libseccomp-dev meson gettext pkgconf, libpoppler-glib-dev, lib-girara-gtk3-dev
-
-# Install zathura
-echo "Installing zathura..."
-meson build
-cd build
-ninja
-ninja install
 
 # Install the plugins
 # zathura-pdf-poppler
@@ -160,6 +156,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
 unzip Hack.zip
 mkdir -p ~/.local/share/fonts
 mv Hack/*.ttf ~/.local/share/fonts
+rm -rf Hack*
 
 # Set alacritty as the default terminal
 update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/local/bin/alacritty 50

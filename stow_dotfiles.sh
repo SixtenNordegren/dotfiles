@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# SCRIPT_DIR="$HOME/.config/"
-SCRIPT_DIR="/home/sixten/.config/"
+SCRIPT_DIR="$HOME/.config/"
 
 read -p "Is $SCRIPT_DIR the correct path for your config files(y/n)?" -n 1 -r
 echo
