@@ -8,7 +8,7 @@ fi
 
 # Update the system and install essential packages
 sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm xorg-xinit i3-wm firefox rofi python-pip cargo vifm neomutt picom base-devel git neovim zathura zathura-pdf-mupdf zathura-djvu alacritty nodejs npm ripgrep
+sudo pacman -S --noconfirm xorg-server xorg-xinit i3-wm firefox rofi python-pip cargo vifm neomutt picom base-devel git neovim zathura zathura-pdf-mupdf zathura-djvu alacritty nodejs npm ripgrep
 
 # Create necessary directories if they don't exist
 mkdir -p ~/downloads ~/projects ~/tools
