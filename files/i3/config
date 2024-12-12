@@ -56,7 +56,7 @@ for_window [class="todo_list"] floating enable, resize set 800 600, move positio
 set $TERMINAL /home/sixten/.cargo/bin/alacritty
 bindsym $mod+Return exec alacritty -e tmux
 # start file explorer
-bindsym $mod+Shift+f exec  -e vifm
+bindsym $mod+Shift+f exec alacritty -e vifm
 # Email 
 bindsym $mod+Shift+m exec alacritty -e neomutt
 # Todo list 

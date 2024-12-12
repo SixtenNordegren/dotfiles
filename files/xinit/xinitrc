@@ -1,0 +1,3 @@
+xmodmap ~/tools/dotfiles/scripts/xmodmap
+
+exec i3

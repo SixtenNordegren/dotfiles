@@ -92,7 +92,7 @@ alias t='todo-txt -c+@f'
 
 # Add ssh key to ssh-agent
 eval "$(ssh-agent -s)"
-ssh-add -q ~/.ssh/keys
+ssh-add -q ~/.ssh/id_rsa
 
 # Add local bin directories to PATH
 # export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linUX-gnu:$LD_LIBRARY_PATH # For zathura
