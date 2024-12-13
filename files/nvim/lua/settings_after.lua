@@ -25,8 +25,9 @@ vim.opt.textwidth = 75
 vim.opt.wrap = false
 vim.opt.spell = true
 vim.opt.tabstop = 3
-
 vim.g.auto_open_quickfix = 0
+-- vim.cmd("colorscheme nightfly") -- TTY friendly colorscheme
+-- Basetheme is alredy TTY friendly, do we really need this?
 
 -- Settings specific for slime
 vim.g.slime_target = "tmux"
