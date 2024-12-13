@@ -75,6 +75,10 @@ rm -f ~/.xinitrc
 echo "source ~/.config/bash/bashrc" > ~/.bashrc
 echo "source ~/.config/xinit/xinitrc" > ~/.xinitrc
 
+# Add python virtual environment to PATH.
+python3 -m venv ~/.venv
+
+
 # Clean up
 pacman -Rns "$(pacman -Qdtq)" --noconfirm
 rm ~/downloads/*
