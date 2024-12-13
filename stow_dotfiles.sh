@@ -8,4 +8,5 @@ if [ "$REPLY" = "y" ]; then
 	stow -v -R -t "$SCRIPT_DIR" files
 else
 	echo "Exiting, please edit the script and edit desired filepath."
+	exit 1
 fi

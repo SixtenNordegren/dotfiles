@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Path to your todo.txt file
-TODO_FILE="/home/sixten/.todo-txt/todo.txt"
+if [ -f /etc/arch-release ]; then
+	TODO_FILE="~/.todo-txt/todo.txt" # Path on arch machine
+else
+	TODO_FILE="/home/sixten/.todo-txt/todo.txt" # Path on ubuntu machine
+fi
 
 # This script prepends i3status output with the count of unfinished tasks
 i3status | while :

@@ -62,6 +62,8 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
+alias t='todo.sh -c+@f'
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -88,7 +90,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 # source "$HOME/.cargo/env"
 export EDITOR="nvim"
-alias t='todo-txt -c+@f'
 
 # Add ssh key to ssh-agent
 eval "$(ssh-agent -s)"
