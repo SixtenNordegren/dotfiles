@@ -98,6 +98,7 @@ ssh-add -q ~/.ssh/id_rsa
 # Add local bin directories to PATH
 # export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linUX-gnu:$LD_LIBRARY_PATH # For zathura
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+export TERMINAL=alacritty
 
 # Add virtualenv to PATH
 if [ -d "$HOME/.venv" ]; then
