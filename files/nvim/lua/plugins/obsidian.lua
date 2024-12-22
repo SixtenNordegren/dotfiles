@@ -22,7 +22,7 @@ return {
 			-- },
 			{
 				name = "CFT project",
-				path = "~/Projects/CFT_notes/",
+				path = "~/projects/CFT_notes/",
 			},
 		},
 
