@@ -5,8 +5,7 @@ read -p "Is $SCRIPT_DIR the correct path for your config files(y/n)?" -n 1 -r
 echo
 
 if [ "$REPLY" = "y" ]; then
-	stow -v -D -t "$SCRIPT_DIR" files
-	stow -v -t "$SCRIPT_DIR" files
+	stow -v -R -t "$SCRIPT_DIR" files
 else
 	echo "Exiting, please edit the script and edit desired filepath."
 	exit 1
