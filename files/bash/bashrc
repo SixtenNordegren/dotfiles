@@ -89,7 +89,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 	. /etc/bash_completion
 fi
 # source "$HOME/.cargo/env"
-export EDITOR="nvim"
 
 # Add ssh key to ssh-agent
 eval "$(ssh-agent -s)"
@@ -97,8 +96,11 @@ ssh-add -q ~/.ssh/id_rsa
 
 # Add local bin directories to PATH
 # export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linUX-gnu:$LD_LIBRARY_PATH # For zathura
+export EDITOR="nvim"
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 export TERMINAL=alacritty
+export BROWSER=firefox
+export MANPAGER="nvim +Man!" # Use nvim as manpager
 
 # Add virtualenv to PATH
 if [ -d "$HOME/.venv" ]; then

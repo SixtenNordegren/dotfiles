@@ -5,6 +5,7 @@ if [ "$(pwd)" != "$(dirname "$(realpath "$0")")" ]; then
 	echo "Please run the script from the home directory of the repository."
 	exit 1
 fi
+PROJECT_DIR=$(pwd)
 if [ $EUID -eq 0 ]; then
 	echo "This script should not be run as root. Please run it as a regular user."
 	exit 1
@@ -26,9 +27,11 @@ if [ $? -ne 0 ]; then
 fi
 
 sudo pacman -Syu --noconfirm
+sudo pacman -S --noconfirm --needed $(cat package_bundles/package_bundle_1)
+sudo pacman -S mandb ## For some reason this package creates a conflict if installed with mandoc.
 
 # Create necessary directories if they don't exist already.
-mkdir -p ~/downloads ~/projects ~/tools ~/.local ~/.local/share ~/.local/share/fonts
+mkdir -p ~/downloads ~/projects ~/tools ~/.local ~/.local/share ~/.local/share/fonts ~/.local/bin
 
 # Install AUR helper.
 cd ~/downloads
@@ -38,8 +41,8 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit i3-wm i3status firefox rofi python-pip cargo vifm neomutt picom base-devel git neovim zathura zathura-pdf-mupdf zathura-djvu alacritty nodejs npm ripgrep stow mandoc man-db ssh-tools xorg-twm xorg-xclock xterm wget unzip xclip openssl github-cli
-yay -S --noconfirm todotxt
+# Install packages from AUR.
+yay -S --noconfirm todotxt nvimpager
 
 # Set up SSH key for GitHub.
 rm -rf ~/.ssh
@@ -54,6 +57,8 @@ read -p "SSH key copied to clipboard. Add it to your GitHub account and press en
 git config --global user.name "Sixten Nordegren"
 git config --global user.email "sixten.nordegren@gmail.com"
 git config --global core.editor "nvim"
+git config --global core.pager "nvim -R"
+git config --global color.pager no
 git config --global init.defaultBranch "main"
 
 # Ensure scripts are executable.
@@ -75,8 +80,22 @@ rm -f ~/.xinitrc
 echo "source ~/.config/bash/bashrc" > ~/.bashrc
 echo "source ~/.config/xinit/xinitrc" > ~/.xinitrc
 
+# Add sources to wikiman and install.
+cd ~/downloads
+git clone https://github.com/filiparag/wikiman.git
+cd wikiman
+sudo make source-arch 
+sudo make source-install
+
+echo "Installing arch-wiki-docs..."
+wikiman -S
+
 # Add python virtual environment to PATH.
 python3 -m venv ~/.venv
+
+# Link pagerscript to local bin directory.
+cd "$PROJECT_DIR"
+ln -s scripts/viman.sh ~/.local/bin/viman
 
 # Clean up
 pacman -Rns "$(pacman -Qdtq)" --noconfirm
