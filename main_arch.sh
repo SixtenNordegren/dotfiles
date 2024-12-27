@@ -42,7 +42,7 @@ cd ..
 rm -rf yay
 
 # Install packages from AUR.
-yay -S --noconfirm todotxt nvimpager
+yay -S --noconfirm todotxt
 
 # Set up SSH key for GitHub.
 rm -rf ~/.ssh
