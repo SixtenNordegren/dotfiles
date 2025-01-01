@@ -169,6 +169,10 @@ command! reload :write | restart full
 filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
 fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
 
+" Epub with zathura
+filextype {*.epub},<application/epub+zip> zathura %c %i &
+
+
 " PostScript
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
         \ {View in zathura}

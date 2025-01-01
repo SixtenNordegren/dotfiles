@@ -2,6 +2,9 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
+-- automatically remove trailing whitespace
+vim.cmd([[autocmd BufWritePre * %s/\s\+$//e]])
+
 -- nvim generall settings
 vim.g.have_nerd_font = true
 vim.opt.number = true
