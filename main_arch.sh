@@ -7,7 +7,7 @@ if [ "$(pwd)" != "$(dirname "$(realpath "$0")")" ]; then
 fi
 PROJECT_DIR=$(pwd)
 if [ $EUID -eq 0 ]; then
-	echo "This script should not be run as root. Please run it as a regular user."
+	echo "This script should not be run as root."
 	exit 1
 fi
 
@@ -22,13 +22,16 @@ fi
 
 ./stow_dotfiles.sh
 if [ $? -ne 0 ]; then
-	echo "The stow command failed or was interrupted. Please check the error message and try again."
+	echo "The stow command failed or was interrupted."
 	exit 1
 fi
 
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed $(cat package_bundles/package_bundle_1)
-sudo pacman -S mandb ## For some reason this package creates a conflict if installed with mandoc.
+if [ $? -ne 0 ]; then
+	echo "The installation of package_bundle_1 failed."
+	exit 1
+fi
 
 # Create necessary directories if they don't exist already.
 mkdir -p ~/downloads ~/projects ~/tools ~/.local ~/.local/share ~/.local/share/fonts ~/.local/bin
@@ -74,9 +77,6 @@ unzip Hack.zip -d ~/.local/share/fonts
 fc-cache -fv
 rm -rf Hack*
 
-rm -f ~/.bashrc
-rm -f ~/.xinitrc
-
 echo "source ~/.config/bash/bashrc" > ~/.bashrc
 echo "source ~/.config/xinit/xinitrc" > ~/.xinitrc
 
@@ -84,11 +84,14 @@ echo "source ~/.config/xinit/xinitrc" > ~/.xinitrc
 cd ~/downloads
 git clone https://github.com/filiparag/wikiman.git
 cd wikiman
-sudo make source-arch 
+sudo make source-arch
 sudo make source-install
 
 echo "Installing arch-wiki-docs..."
 wikiman -S
+
+# Set timezone to Europe/Stockholm.
+sudo timedatectl set-timezone Europe/Stockholm
 
 # Add python virtual environment to PATH.
 python3 -m venv ~/.venv
@@ -103,7 +106,7 @@ rm ~/downloads/*
 PASSWORD=""
 echo "Clearing password from memory."
 echo "---------------------------------"
-
+echo " "
 echo "Setup complete!"
-echo "Reboot if you haven't already." 
+echo "Reboot if you haven't already."
 echo "Don't forget to add the public SSH key to your GitHub account."
