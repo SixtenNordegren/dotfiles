@@ -1,17 +1,17 @@
 #!/bin/bash
+# Set up properly with t -d to specify config file
+TODO_FILE="~/.todo/todo.txt"
 
-# Path to your todo.txt file
-if [ -f /etc/arch-release ]; then
-	TODO_FILE="~/.todo-txt/todo.txt" # Path on arch machine
-else
-	TODO_FILE="/home/sixten/.todo-txt/todo.txt" # Path on ubuntu machine
-fi
-
-# This script prepends i3status output with the count of unfinished tasks
 i3status | while :
 do
+POMODORO_STATUS=$(pomodoro -g)
+TASKS=$(grep -c -v '^x ' "$TODO_FILE")
+if [ "$POMODORO_STATUS" = "" ]; then
     read line
-    unfinished_tasks=$(grep -c -v '^x ' "$TODO_FILE")
-    echo "Tasks: $unfinished_tasks | $line" || exit 1
+    echo "Tasks: $TASKS | $line" || exit 1
+else
+    read line
+	 echo "Pomodoro: $POMODORO_STATUS | Tasks: $TASKS | $line" || exit 1
+fi
 done
 
