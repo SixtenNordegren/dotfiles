@@ -15,7 +15,7 @@ neovim
 zathura
 zathura-pdf-mupdf
 zathura-djvu
-alacritty
+xterm
 nodejs
 npm
 ripgrep
@@ -32,3 +32,7 @@ xclip
 openssl
 github-cli
 wikiman
+i3lock
+xautolock
+dunst
+xss-lock

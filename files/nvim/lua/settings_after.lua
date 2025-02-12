@@ -39,3 +39,6 @@ vim.g.slime_default_config = {
 	default_send_input = "top",
 	default_send_input_stay = "top",
 }
+
+vim.cmd("Copilot disable")
+-- vim.g.zig_fmt_autosave = 0

@@ -33,6 +33,9 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+# Update Xterm settings.
+xrdb -merge ~/.Xresources
+
 # Create necessary directories if they don't exist already.
 mkdir -p ~/downloads ~/projects ~/tools ~/.local ~/.local/share ~/.local/share/fonts ~/.local/bin
 

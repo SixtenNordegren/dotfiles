@@ -1,6 +1,6 @@
 set ssl_starttls=yes
 set ssl_force_tls=yes
-set editor="nvim"
+set editor="nvim -c 'setlocal textwidth=0 wrap'"
 
 source /home/sixten/.config/neomutt/accounts/gmail/gmailrc
 

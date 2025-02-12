@@ -1,0 +1,44 @@
+! Xterm Configuration
+
+! Font settings
+XTerm*faceName: HackNerdFontMono
+XTerm*faceSize: 13
+
+! Use the correct font styles
+XTerm*boldMode: true
+XTerm*faceNameBold: HackNerdFontMono
+XTerm*faceNameItalic: HackNerdFontMono
+XTerm*faceNameBoldItalic: HackNerdFontMono
+
+! Colors
+XTerm*background: #1e1e1e
+XTerm*foreground: #c5c8c6
+XTerm*cursorColor: #ffcc00
+
+! Scrollback buffer
+XTerm*saveLines: 10000
+
+! Keyboard and Mouse
+XTerm*metaSendsEscape: true
+XTerm*VT100.Translations: #override \
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>Q: quit()
+
+! Window appearance
+XTerm*borderWidth: 2
+XTerm*internalBorder: 10
+
+! Enable true color support
+XTerm*termName: xterm-256color
+
+! Miscellaneous
+XTerm*visualBell: false
+XTerm*bellIsUrgent: flase
+XTerm*utmpInhibit: true
+XTerm*loginShell: true
+XTerm*cursorBlink: false
+
+! Remove borders around programs in Xterm
+XTerm*internalBorder: 0
+XTerm*borderWidth: 0
