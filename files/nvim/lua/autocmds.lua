@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VimtexEventQuit",
-	command = "VimtexClearn",
+	command = "VimtexClean",
 })
 
 -- markdown

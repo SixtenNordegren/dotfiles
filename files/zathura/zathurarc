@@ -1,13 +1,3 @@
-set adjust-open width
-set zoom 1.25
-set zoom-step 0.1
-set scroll-step 40
-set statusbar true
-set show-scrollbars false
-set recolor true
-set recolor-keephue true
-
-
 set font "DejaVu Sans Mono 16"
 set index-background-color "#282828"
 
@@ -16,6 +6,4 @@ set selection-clipboard clipboard
 set recolor false
 set adjust-open both
 set scroll-step 100
-set show-scrollbars true
 set font "DejaVu Sans 12"
-set index-background-color "#f8f8f8"

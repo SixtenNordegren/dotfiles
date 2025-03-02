@@ -26,7 +26,7 @@ vim.opt.wrap = false
 vim.opt.spell = true
 vim.opt.tabstop = 3
 vim.g.auto_open_quickfix = 0
-vim.cmd("colorscheme nightfly") -- TTY friendly colorscheme
+-- vim.cmd("colorscheme nightfly") -- TTY friendly colorscheme
 -- Basetheme is alredy TTY friendly, do we really need this?
 
 vim.opt.conceallevel = 2
@@ -42,3 +42,4 @@ vim.g.slime_default_config = {
 
 vim.cmd("Copilot disable")
 -- vim.g.zig_fmt_autosave = 0
+vim.api.nvim_set_keymap("i", "<BS>", "<BS>", { noremap = true })
