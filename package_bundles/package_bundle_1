@@ -21,7 +21,6 @@ npm
 ripgrep
 stow
 mandoc
-man-db
 ssh-tools
 xorg-twm
 xorg-xclock
@@ -36,3 +35,5 @@ i3lock
 xautolock
 dunst
 xss-lock
+pulseaudio
+todo-txt

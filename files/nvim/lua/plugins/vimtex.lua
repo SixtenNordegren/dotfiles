@@ -12,7 +12,7 @@ return {
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VimtexEventView",
 			callback = function()
-				local winid = vim.env.WINDOWID
+				local winid = vim.fn.trim(vim.fn.system("xdotool getactivewindow"))
 				vim.fn.system("sleep 0.01 && xdotool windowactivate " .. winid)
 				vim.fn.system("sleep 0.01 && xdotool windowraise " .. winid)
 			end,

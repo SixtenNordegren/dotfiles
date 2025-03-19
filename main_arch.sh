@@ -26,8 +26,17 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm --needed $(cat package_bundles/package_bundle_1)
+# Install AUR helper.
+cd ~/downloads
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+cd ..
+rm -rf yay
+
+yay -Syu --noconfirm
+yay -S --noconfirm --needed $(cat package_bundles/package_bundle_1)
+
 if [ $? -ne 0 ]; then
 	echo "The installation of package_bundle_1 failed."
 	exit 1
@@ -38,17 +47,6 @@ xrdb -merge ~/.Xresources
 
 # Create necessary directories if they don't exist already.
 mkdir -p ~/downloads ~/projects ~/tools ~/.local ~/.local/share ~/.local/share/fonts ~/.local/bin
-
-# Install AUR helper.
-cd ~/downloads
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ..
-rm -rf yay
-
-# Install packages from AUR.
-yay -S --noconfirm todotxt
 
 # Set up SSH key for GitHub.
 rm -rf ~/.ssh

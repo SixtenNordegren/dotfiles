@@ -28,6 +28,7 @@ vim.opt.tabstop = 3
 vim.g.auto_open_quickfix = 0
 -- vim.cmd("colorscheme nightfly") -- TTY friendly colorscheme
 -- Basetheme is alredy TTY friendly, do we really need this?
+-- vim.cmd([[syntax enable]])
 
 vim.opt.conceallevel = 2
 
