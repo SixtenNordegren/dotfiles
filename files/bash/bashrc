@@ -99,3 +99,4 @@ export XDG_CONFIG_HOME="$HOME/.config"
 if [ -d "$HOME/.venv" ]; then
   source "$HOME/.venv/bin/activate"
 fi
+

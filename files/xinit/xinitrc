@@ -1,3 +1,4 @@
 xmodmap ~/tools/dotfiles/scripts/xmodmap
 
 exec i3
+exec storage_box_start.sh

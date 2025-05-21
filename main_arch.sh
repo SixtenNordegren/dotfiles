@@ -26,6 +26,7 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+
 # Install AUR helper.
 cd ~/downloads
 git clone https://aur.archlinux.org/yay.git
@@ -68,8 +69,36 @@ git config --global init.defaultBranch "main"
 # Ensure scripts are executable.
 chmod +x scripts/* files/i3/scripts/*
 
+#Ensure files in ../scripts folder are avialable from path
+ln -s $PROJECT_DIR/scripts/* ~/.local/bin/
+
 # Decrypt sensitive files.
 ./scripts/decryptfile.sh $PASSWORD ./files/neomutt/accounts/gmail/gmailrc.encrypted ./files/neomutt/accounts/gmail/gmailrc
+./scripts/decryptfile.sh $PASSWORD ./files/ssh/storagebox_pass_encrypted ./files/ssh/storagebox_pass
+STORAGE_PASS="$(cat ./files/ssh/storagebox_pass)"
+
+# Setup the storagebox
+echo "==> Creating rclone remote if it doesn’t exist…"
+if ! rclone config show | grep -q '^\[hzbox\]'; then
+  rclone config create hzbox sftp \
+        host "u462100.your-storagebox.de" \
+        port "23" \
+        user "u462100" \
+        pass "$(rclone obscure "$STORAGE_PASS")"
+fi
+
+echo "==> One-time bisync --resync seed…"
+mkdir -p "$HOME/storagebox"
+rclone bisync hzbox: "$HOME/storagebox" --resync --verbose || {
+  echo "Bisync seed failed – aborting install"
+  exit 1
+}
+
+# Add public ssh key to storagebox
+sshpass -f ./files/ssh/storagebox_pass \
+  ssh -p23 -o StrictHostKeyChecking=accept-new \
+  u462100@u462100.your-storagebox.de install-ssh-key \
+  < ~/.config/ssh/id_rsa.pub
 
 # Install Hack Nerd Font.
 cd ~/downloads
@@ -104,9 +133,19 @@ ln -s scripts/viman.sh ~/.local/bin/viman
 # Clean up
 pacman -Rns "$(pacman -Qdtq)" --noconfirm
 rm ~/downloads/*
-PASSWORD=""
+
+
 echo "Clearing password from memory."
 echo "---------------------------------"
+PASSWORD=""
+STORAGE_PASS=""
+
+echo "Reloading user systemd manager configuration..."
+echo "---------------------------------"
+systemctl --user daemon-reload
+systemctl --user enable --now storagebox-bisync.timer
+systemctl enable-linger "$USER"
+
 echo " "
 echo "Setup complete!"
 echo "Reboot if you haven't already."

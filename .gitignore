@@ -55,3 +55,4 @@ node_modules/
 
 # Removing files that should are unencrypted
 files/neomutt/accounts/gmail/gmailrc
+files/ssh/storagebox_pass

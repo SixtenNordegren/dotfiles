@@ -1,0 +1,10 @@
+[Unit]
+Description=Bidirectional sync with Hetzner Storage Box
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone bisync hzbox: %h/storagebox \
+          --verbose --check-access --track-renames \
+          --log-file %h/.local/share/storagebox-bisync.log
