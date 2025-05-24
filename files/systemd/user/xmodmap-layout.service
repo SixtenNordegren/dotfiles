@@ -1,0 +1,14 @@
+[Unit]
+Description=Set up keyboard layout (Caps -> modkey).
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "/usr/bin/xmodmap -e 'clear Lock' \
+  -e 'remove mod3 = Hyper_L' \
+  -e 'keycode 66 = Hyper_L' \
+  -e 'add mod4 = Hyper_L'"
+
+[Install]
+WantedBy=default.target
+

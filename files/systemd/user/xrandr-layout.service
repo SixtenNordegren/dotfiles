@@ -1,0 +1,11 @@
+[Unit]
+Description=Set up display layout using xrandr
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xrandr --output DP-2 --auto --right-of HDMI-3 --auto
+
+[Install]
+WantedBy=default.target

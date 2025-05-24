@@ -31,3 +31,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 	group = group,
 })
+
+-- -- csv
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "csv",
+	callback = function()
+		vim.cmd("TSBufDisable highlight")
+	end,
+})
