@@ -4,6 +4,7 @@ After=graphical-session.target
 
 [Service]
 Type=oneshot
+Environment=DISPLAY=:0
 ExecStart=/bin/bash -c "/usr/bin/xmodmap -e 'clear Lock' \
   -e 'remove mod3 = Hyper_L' \
   -e 'keycode 66 = Hyper_L' \
