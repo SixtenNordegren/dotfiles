@@ -94,9 +94,3 @@ export TERMINAL=alacritty
 export BROWSER=firefox
 export MANPAGER="nvim +Man!" # Use nvim as manpager
 export XDG_CONFIG_HOME="$HOME/.config"
-
-# Add virtualenv to PATH
-if [ -d "$HOME/.venv" ]; then
-  source "$HOME/.venv/bin/activate"
-fi
-

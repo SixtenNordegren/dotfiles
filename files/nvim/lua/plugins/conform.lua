@@ -27,6 +27,13 @@ return {
 			latex = { "latexindent" },
 			shell = { "shfmt" },
 			html = { "htmlbeautifier" },
+			css = { "prettierd" },
+			javascript = { "prettierd" },
+			javascriptreact = { "prettierd" },
+			typescript = { "prettierd" },
+			typescriptreact = { "prettierd" },
+			vue = { "prettierd" },
+			json = { "prettierd" },
 		},
 	},
 }

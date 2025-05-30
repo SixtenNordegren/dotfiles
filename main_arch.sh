@@ -20,11 +20,6 @@ if [ $CONFIRM != "y" ]; then
 	exit 1
 fi
 
-./stow_dotfiles.sh
-if [ $? -ne 0 ]; then
-	echo "The stow command failed or was interrupted."
-	exit 1
-fi
 
 
 # Install AUR helper.
@@ -77,6 +72,12 @@ ln -s $PROJECT_DIR/scripts/* ~/.local/bin/
 ./scripts/decryptfile.sh $PASSWORD ./files/ssh/storagebox_pass_encrypted ./files/ssh/storagebox_pass
 STORAGE_PASS="$(cat ./files/ssh/storagebox_pass)"
 
+# Stow the dotfiles
+./stow_dotfiles.sh
+if [ $? -ne 0 ]; then
+	echo "The stow command failed or was interrupted."
+	exit 1
+fi
 # Setup the storagebox
 echo "==> Creating rclone remote if it doesn’t exist…"
 if ! rclone config show | grep -q '^\[hzbox\]'; then
@@ -123,12 +124,9 @@ wikiman -S
 # Set timezone to Europe/Stockholm.
 sudo timedatectl set-timezone Europe/Stockholm
 
-# Add python virtual environment to PATH.
-python3 -m venv ~/.venv
-
 # Link pagerscript to local bin directory.
 cd "$PROJECT_DIR"
-ln -s scripts/viman.sh ~/.local/bin/viman
+ln -s ./scripts/viman.sh ~/.local/bin/viman
 
 # Clean up
 pacman -Rns "$(pacman -Qdtq)" --noconfirm
