@@ -12,6 +12,7 @@ return {
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		local servers = {
+			jdtls = {},
 			bashls = {},
 			jedi_language_server = {},
 			-- bashls = {
@@ -52,6 +53,7 @@ return {
 			"stylua", -- Used to format Lua code
 			"autopep8",
 			"latexindent",
+			"shfmt",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

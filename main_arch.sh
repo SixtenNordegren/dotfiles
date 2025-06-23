@@ -20,24 +20,6 @@ if [ $CONFIRM != "y" ]; then
 	exit 1
 fi
 
-
-
-# Install AUR helper.
-cd ~/downloads
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ..
-rm -rf yay
-
-yay -Syu --noconfirm
-yay -S --noconfirm --needed $(cat package_bundles/package_bundle_1)
-
-if [ $? -ne 0 ]; then
-	echo "The installation of package_bundle_1 failed."
-	exit 1
-fi
-
 # Update Xterm settings.
 xrdb -merge ~/.Xresources
 
@@ -61,6 +43,23 @@ git config --global core.pager "nvim -R"
 git config --global color.pager no
 git config --global init.defaultBranch "main"
 
+
+# Install AUR helper.
+cd ~/downloads
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+cd ..
+rm -rf yay
+
+yay -Syu --noconfirm
+yay -S --noconfirm --needed $(cat package_bundles/package_bundle_1)
+
+
+if [ $? -ne 0 ]; then
+	echo "The installation of package_bundle_1 failed."
+	exit 1
+fi
 # Ensure scripts are executable.
 chmod +x scripts/* files/i3/scripts/*
 
@@ -68,8 +67,8 @@ chmod +x scripts/* files/i3/scripts/*
 ln -s $PROJECT_DIR/scripts/* ~/.local/bin/
 
 # Decrypt sensitive files.
-./scripts/decryptfile.sh $PASSWORD ./files/neomutt/accounts/gmail/gmailrc.encrypted ./files/neomutt/accounts/gmail/gmailrc
-./scripts/decryptfile.sh $PASSWORD ./files/ssh/storagebox_pass_encrypted ./files/ssh/storagebox_pass
+$PROJECT_DIR/scripts/decryptfile.sh $PASSWORD ./files/neomutt/accounts/gmail/gmailrc.encrypted ./files/neomutt/accounts/gmail/gmailrc
+$PROJECT_DIR/scripts/decryptfile.sh $PASSWORD ./files/ssh/storagebox_pass_encrypted ./files/ssh/storagebox_pass
 STORAGE_PASS="$(cat ./files/ssh/storagebox_pass)"
 
 # Stow the dotfiles
@@ -131,7 +130,6 @@ ln -s ./scripts/viman.sh ~/.local/bin/viman
 # Clean up
 pacman -Rns "$(pacman -Qdtq)" --noconfirm
 rm ~/downloads/*
-
 
 echo "Clearing password from memory."
 echo "---------------------------------"

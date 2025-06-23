@@ -8,12 +8,12 @@ return {
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = "n",
 			desc = "[F]ormat buffer",
 		},
 	},
 	opts = {
-		notify_on_error = false,
+		notify_on_error = true,
 		format_on_save = function(bufnr)
 			local disable_filetypes = { c = true, cpp = true }
 			return {
@@ -26,6 +26,7 @@ return {
 			python = { "autopep8" },
 			latex = { "latexindent" },
 			shell = { "shfmt" },
+			bash = { "shfmt" },
 			html = { "htmlbeautifier" },
 			css = { "prettierd" },
 			javascript = { "prettierd" },
@@ -34,6 +35,7 @@ return {
 			typescriptreact = { "prettierd" },
 			vue = { "prettierd" },
 			json = { "prettierd" },
+			java = { "google-java-format" },
 		},
 	},
 }
