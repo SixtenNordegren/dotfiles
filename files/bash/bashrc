@@ -32,7 +32,6 @@ case "$TERM" in
 xterm-color) color_prompt=yes ;;
 esac
 
-
 . ~/.config/bash/git-completion.bash
 . ~/.config/bash/git-prompt.sh
 
@@ -94,3 +93,6 @@ export TERMINAL=alacritty
 export BROWSER=firefox
 export MANPAGER="nvim +Man!" # Use nvim as manpager
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Load all the files in the oneshot folder
+"$HOME/.config/bash/autostart/"*

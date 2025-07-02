@@ -2,7 +2,7 @@
 
 ! Font settings
 XTerm*faceName: HackNerdFontMono
-XTerm*faceSize: 13
+XTerm*faceSize: 15
 
 ! Use the correct font styles
 XTerm*boldMode: true
