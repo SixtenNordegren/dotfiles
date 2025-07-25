@@ -1,0 +1,10 @@
+[user]
+	name = Sixten Nordegren
+	email = sixten.nordegren@gmail.com
+[core]
+	editor = nvim
+	pager = nvim -R
+[color]
+	pager = no
+[init]
+	defaultBranch = main

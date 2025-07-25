@@ -89,10 +89,7 @@ ssh-add -q ~/.ssh/id_rsa
 # export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linUX-gnu:$LD_LIBRARY_PATH # For zathura
 export EDITOR="nvim"
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
-export TERMINAL=alacritty
-export BROWSER=firefox
+export TERMINAL=xterm
 export MANPAGER="nvim +Man!" # Use nvim as manpager
 export XDG_CONFIG_HOME="$HOME/.config"
-
-# Load all the files in the oneshot folder
-"$HOME/.config/bash/autostart/"*
+export SYSCONF="/usr/local/share/sysconf/"
