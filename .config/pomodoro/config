@@ -1,6 +1,0 @@
-work_long 3600 break_10
-break 600 work_long
-work_short 1500 break_short
-break_short 300 work_short
-work_test 10 break_test
-break_test 5 work_test
