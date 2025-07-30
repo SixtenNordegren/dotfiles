@@ -5,7 +5,7 @@ After=graphical-session.target
 [Service]
 Type=oneshot
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/xrandr --output DP-2 --auto --right-of HDMI-3 --mode 2560x1440 --rate 240
+ExecStart=/usr/bin/xrandr --output HDMI-2 --auto --output DP-2 --mode 2560x1440 --rate 240
 
 [Install]
 WantedBy=default.target

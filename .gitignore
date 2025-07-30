@@ -1,4 +1,5 @@
 .ssh/*hosts*
+.ssh/id*
 # Ignore Vim swap files
 *.swp
 *.swo
