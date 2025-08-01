@@ -6,12 +6,11 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 12
+font pango:Hack Nerd Font Mono 13
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xmodmap "$HOME/.config/i3/xmodmap"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -47,7 +46,7 @@ bindsym $mod+Return exec xterm -e tmux
 bindsym $mod+Shift+f exec xterm -e vifm
 bindsym $mod+Shift+m exec xterm -e neomutt
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show combi
 
 # Toggle languages
 bindsym F11 exec "~/.config/i3/scripts/us_with_caps.sh"

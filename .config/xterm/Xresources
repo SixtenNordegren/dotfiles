@@ -2,7 +2,7 @@
 
 ! Font settings
 XTerm*faceName: HackNerdFontMono
-XTerm*faceSize: 15
+XTerm*faceSize: 16
 
 ! Use the correct font styles
 XTerm*boldMode: true
@@ -26,8 +26,8 @@ XTerm*VT100.Translations: #override \
   Ctrl Shift <Key>Q: quit()
 
 ! Window appearance
-XTerm*borderWidth: 2
-XTerm*internalBorder: 10
+! XTerm*borderWidth: 2
+! XTerm*internalBorder: 10
 
 ! Enable true color support
 XTerm*termName: xterm-256color

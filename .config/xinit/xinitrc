@@ -1,5 +1,0 @@
-systemctl --user start xmodmap-layout.service
-systemctl --user start xrandr-layout.service
-
-exec i3
-exec storage_box_start.sh

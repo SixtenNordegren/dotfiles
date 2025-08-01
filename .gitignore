@@ -1,3 +1,4 @@
+.config/vifm/vifminfo.json*
 .ssh/*hosts*
 .ssh/id*
 # Ignore Vim swap files

@@ -1,1 +1,14 @@
-source ~/.config/xinit/xinitrc
+#!/bin/sh
+
+if [ -f '/usr/local/bin/monitors_local' ]; then
+	(sleep 1 && '/usr/local/bin/monitors_local' >'/tmp/monitors_local.log.txt') &
+	if [ $? -ne 0 ]; then
+		echo 'Local monitors script crashed. Likley bad perms' >>'/tmp/monitors_local.log.txt'
+	fi
+fi
+
+if ! '/usr/local/share/sysconf/dotfiles/.config/i3/scripts/xmodmap' >'/tmp/xmodmap_custom.log.txt'; then
+	echo 'xmodmap crash.' >>'/tmp/xmodmap_custom.log.txt'
+fi
+
+exec '/usr/bin/i3'
