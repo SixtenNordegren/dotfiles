@@ -14,6 +14,7 @@ return {
 		local servers = {
 			html = {},
 			jdtls = {},
+			shellcheck = {},
 			bashls = {},
 			jedi_language_server = {},
 			-- bashls = {
@@ -53,8 +54,8 @@ return {
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
 			"autopep8",
-			"latexindent",
 			"shfmt",
+			"shellcheck",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
