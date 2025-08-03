@@ -39,3 +39,19 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd("TSBufDisable highlight")
 	end,
 })
+
+-- Java webdev
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = { "*.java", "*.properties", "*.html" },
+	callback = function()
+		-- Trigger Gradle build
+		vim.fn.jobstart("./gradlew build")
+	end,
+})
+-- HTML
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "html",
+	callback = function()
+		vim.opt.omnifunc = "htmlcomplete#CompleteTags"
+	end,
+})
