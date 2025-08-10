@@ -19,14 +19,10 @@ return {
 			shellcheck = {},
 			bashls = {},
 			jedi_language_server = {},
-			-- bashls = {
-			-- 	settings = { name = "bash-language-server", cmd = { "bash-language-server", "start" } },
-			-- },
 			marksman = {},
 			tailwindcss = {
 				filetypes = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
 			},
-
 			lua_ls = {
 				settings = {
 					Lua = {

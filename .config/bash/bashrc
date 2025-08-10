@@ -1,47 +1,80 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# case "$-" in
+# *i*) ;;
+# *)
+# 	return
+# 	;;
+# esac
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+export EDITOR="nvim"
+export TERMINAL="xterm"
+export MANPAGER="nvim +Man!"
+export XDG_CONFIG_HOME="$HOME/.config"
+export SYSCONF="/usr/local/share/sysconf/"
+export PATH="$HOME/.local/bin:$PATH"
 
-# append to the history file, don't overwrite it
+export HISTCONTROL="ignoredups:ignorespace"
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+alert() {
+	local icon
+	local errorcode="$?"
+	if [ $errorcode = 0 ]; then
+		icon="terminal"
+	else
+		icon="error"
+	fi
+	local last_command
+	last_command=$(history 1 | sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')
+	notify-send --urgency=low -i "$icon" "Command Finished" "$last_command"
+}
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
+if [ -x /usr/bin/dircolors ]; then
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color) color_prompt=yes ;;
-esac
+if ! source "$HOME/.config/bash/git-completion.bash" >/dev/null 2>&1; then
+	echo "No git-completion.bash script found. Proceeding."
+fi
 
-. ~/.config/bash/git-completion.bash
-. ~/.config/bash/git-prompt.sh
+if ! source "$HOME/.config/bash/git-prompt.sh" >/dev/null 2>&1; then
+	echo "No git-prompt.sh script found. Proceeding."
+fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
-# export PS1=$PS1+'$(__git_ps1 " (%s)")\$ '
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto"
 
-PS1='\[\033[01;34m\]\W\[\033[00m\]:$(__git_ps1 " (%s)")\[\033[00m\]\$ '
-unset color_prompt force_color_prompt
+if tput setaf 1 >/dev/null 2>&1; then
+	C_BLUE=$(tput setaf 4)
+	C_GREEN=$(tput setaf 2)
+	C_YELLOW=$(tput setaf 3)
+	C_RED=$(tput setaf 1)
+	C_CYAN=$(tput setaf 6)
+	C_RESET=$(tput sgr0)
+else
+	C_BLUE='\033[0;34m'
+	C_GREEN='\033[0;32m'
+	C_YELLOW='\033[0;33m'
+	C_RED='\033[0;31m'
+	C_CYAN='\033[0;36m'
+	C_RESET='\033[0m'
+fi
 
-# If this is an xterm set the title to user@host:dir
+PS1="\n\[${C_CYAN}\]\u@\h\[${C_RESET}\]:\[${C_YELLOW}\]\w\n"
+PS1+="\$(__git_ps1 \" \[${C_GREEN}\](%s)\")"
+PS1+='$(exit_code=$?; if [ $exit_code -ne 0 ]; then echo "\[${C_RED}\]($exit_code)";
+fi) '
+PS1+="\[${C_RESET}\]\\$ "
+
 case "$TERM" in
 xterm* | rxvt*)
 	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
@@ -49,47 +82,6 @@ xterm* | rxvt*)
 *) ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
-
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-fi
-
 alias t='todo.sh -c+@f'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias news='newsboat -C ~/.config/newsboat/newsboatrc -u ~/.config/newsboat/urls'
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-	. /etc/bash_completion
-fi
-# source "$HOME/.cargo/env"
-
-# Add ssh key to ssh-agent
-eval "$(ssh-agent -s)"
-ssh-add -q ~/.ssh/id_rsa
-
-# Add local bin directories to PATH
-# export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linUX-gnu:$LD_LIBRARY_PATH # For zathura
-export EDITOR="nvim"
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
-export TERMINAL=xterm
-export MANPAGER="nvim +Man!" # Use nvim as manpager
-export XDG_CONFIG_HOME="$HOME/.config"
-export SYSCONF="/usr/local/share/sysconf/"
+[ -x /usr/bin/lesspipe.sh ] && eval "$(SHELL=/bin/bash lesspipe.sh)"

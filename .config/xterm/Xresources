@@ -11,7 +11,7 @@ XTerm*faceNameItalic: HackNerdFontMono
 XTerm*faceNameBoldItalic: HackNerdFontMono
 
 ! Colors
-XTerm*background: #1e1e1e
+XTerm*background: #000000
 XTerm*foreground: #c5c8c6
 XTerm*cursorColor: #ffcc00
 

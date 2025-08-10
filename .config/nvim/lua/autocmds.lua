@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "*.java", "*.properties", "*.html" },
 	callback = function()
 		-- Trigger Gradle build
-		vim.fn.jobstart("./gradlew build")
+		vim.fn.jobstart("./gradlew --no-rebuild build")
 	end,
 })
 -- HTML

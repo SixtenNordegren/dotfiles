@@ -11,4 +11,4 @@ if ! '/usr/local/share/sysconf/dotfiles/.config/i3/scripts/xmodmap' >'/tmp/xmodm
 	echo 'xmodmap crash.' >>'/tmp/xmodmap_custom.log.txt'
 fi
 
-exec '/usr/bin/i3'
+exec '/usr/bin/ssh-agent' '/usr/bin/i3'

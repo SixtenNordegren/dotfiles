@@ -36,6 +36,7 @@ return {
 			vue = { "prettierd" },
 			json = { "prettierd" },
 			java = { "google-java-format" },
+			groovy = { "npm-groovy-lint" },
 		},
 	},
 }
