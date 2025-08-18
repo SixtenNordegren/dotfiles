@@ -1,9 +1,7 @@
-# case "$-" in
-# *i*) ;;
-# *)
-# 	return
-# 	;;
-# esac
+case "$-" in
+*i*) ;;
+*) return ;;
+esac
 
 export EDITOR="nvim"
 export TERMINAL="xterm"
@@ -71,8 +69,7 @@ fi
 
 PS1="\n\[${C_CYAN}\]\u@\h\[${C_RESET}\]:\[${C_YELLOW}\]\w\n"
 PS1+="\$(__git_ps1 \" \[${C_GREEN}\](%s)\")"
-PS1+='$(exit_code=$?; if [ $exit_code -ne 0 ]; then echo "\[${C_RED}\]($exit_code)";
-fi) '
+PS1+="\$(if [ \$? != 0 ]; then echo \"\[${C_RED}\](\$?)\"; fi) "
 PS1+="\[${C_RESET}\]\\$ "
 
 case "$TERM" in

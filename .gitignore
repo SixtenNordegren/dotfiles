@@ -1,3 +1,4 @@
+.config/nvim/lazy-lock.json
 .config/vifm/vifminfo.json*
 .ssh/*hosts*
 .ssh/id*
