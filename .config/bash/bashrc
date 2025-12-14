@@ -14,6 +14,8 @@ export HISTCONTROL="ignoredups:ignorespace"
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 
+export BROWSER=zen-browser
+
 shopt -s histappend
 shopt -s checkwinsize
 

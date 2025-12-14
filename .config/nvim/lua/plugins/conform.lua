@@ -37,6 +37,7 @@ return {
 			json = { "prettierd" },
 			java = { "google-java-format" },
 			groovy = { "npm-groovy-lint" },
+			c = { "clang-format" },
 		},
 	},
 }
