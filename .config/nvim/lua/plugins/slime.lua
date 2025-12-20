@@ -1,1 +1,0 @@
-return { "jpalardy/vim-slime" }
