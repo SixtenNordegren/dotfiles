@@ -1,7 +1,17 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "system",
-  "model": "meta-llama/llama-4-scout-17b-16e-instruct",
-  "autoshare": false,
-  "autoupdate": true
+  "provider": {
+    "groq": {
+      "npm": "@ai-sdk/openai-compatible",   // Groq uses the OpenAI‑compatible SDK
+      "name": "Groq",
+      "options": {
+        "baseURL": "https://api.groq.com/openai/v1",
+      },
+      "models": {
+        "groq/compound": {
+          "name": "Groq Compound"
+        }
+      }
+    }
+  }
 }

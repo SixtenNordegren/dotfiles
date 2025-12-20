@@ -9,6 +9,7 @@ export MANPAGER="nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
 export SYSCONF="/usr/local/share/sysconf/"
 export PATH="$HOME/.local/bin:$PATH"
+export QUTEBROWSER_PASS_SELECTOR="rofi -dmenu -i -p 'Pass: '"
 
 export HISTCONTROL="ignoredups:ignorespace"
 export HISTSIZE=-1
