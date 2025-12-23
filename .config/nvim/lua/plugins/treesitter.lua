@@ -12,6 +12,7 @@ return {
 			"vim",
 			"vimdoc",
 			"python",
+			"regex",
 		},
 		auto_install = true,
 		highlight = {
@@ -21,8 +22,8 @@ return {
 		},
 		indent = { enable = true, disable = { "ruby" } },
 	},
-	config = function(_, opts)
-		---@diagnostic disable-next-line: missing-fields
-		require("nvim-treesitter.configs").setup(opts)
-	end,
+	-- config = function(_, opts)
+	-- 	---@diagnostic disable-next-line: missing-fields
+	-- 	require("nvim-treesitter.configs").setup(opts)
+	-- end,
 }

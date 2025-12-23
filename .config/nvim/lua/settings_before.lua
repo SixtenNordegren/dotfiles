@@ -1,7 +1,3 @@
--- Setting the leader
-vim.g.mapleader = ","
-vim.g.maplocalleader = " "
-
 -- automatically remove trailing whitespace
 vim.cmd([[autocmd BufWritePre * %s/\s\+$//e]])
 
