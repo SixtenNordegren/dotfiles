@@ -1,4 +1,4 @@
--- Dictionary_ltex = {}
+-- CustomDictionary = {}
 --
 -- for word in io.open("$HOME/.config/nvim/spell/en.utf-8.add", "r"):lines() do
 -- 	word = word:gsub("^%s*(.-)%s*$", "%1")
@@ -6,7 +6,7 @@
 -- 	table.insert(Dictionary_ltex, word)
 -- end
 -- Initialize the dictionary table
-Dictionary_ltex = {}
+CustomDictionary = {}
 
 -- Get the home directory
 local home = os.getenv("HOME")
@@ -20,7 +20,7 @@ if file then
 	for word in file:lines() do
 		word = word:gsub("^%s*(.-)%s*$", "%1")
 		-- Add the word to the dictionary
-		table.insert(Dictionary_ltex, word)
+		table.insert(CustomDictionary, word)
 	end
 	file:close()
 else
