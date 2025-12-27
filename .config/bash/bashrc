@@ -1,8 +1,3 @@
-case "$-" in
-*i*) ;;
-*) return ;;
-esac
-
 export EDITOR="nvim"
 export TERMINAL="xterm"
 export MANPAGER="nvim +Man!"
@@ -15,31 +10,32 @@ export HISTCONTROL="ignoredups:ignorespace"
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 
-export BROWSER=zen-browser
+export BROWSER=qutebrowser
 
 shopt -s histappend
 shopt -s checkwinsize
 
-alert() {
-	local icon
-	local errorcode="$?"
-	if [ $errorcode = 0 ]; then
-		icon="terminal"
-	else
-		icon="error"
-	fi
-	local last_command
-	last_command=$(history 1 | sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')
-	notify-send --urgency=low -i "$icon" "Command Finished" "$last_command"
-}
+eval "$(dircolors -b)"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
-if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-fi
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto"
+
+C_GREEN=$(tput setaf 2)
+C_YELLOW=$(tput setaf 3)
+C_RED=$(tput setaf 1)
+C_CYAN=$(tput setaf 6)
+C_RESET=$(tput sgr0)
+
+PS1="\n\[${C_CYAN}\]\u@\h\[${C_RESET}\]:\[${C_YELLOW}\]\w\n"
+PS1+="\$(__git_ps1 \" \[${C_GREEN}\](%s)\")"
+PS1+="\$(if [ \$? != 0 ]; then echo \"\[${C_RED}\](\$?)\"; fi) "
+PS1+="\[${C_RESET}\]\\$ "
 
 if ! source "$HOME/.config/bash/git-completion.bash" >/dev/null 2>&1; then
 	echo "No git-completion.bash script found. Proceeding."
@@ -49,39 +45,6 @@ if ! source "$HOME/.config/bash/git-prompt.sh" >/dev/null 2>&1; then
 	echo "No git-prompt.sh script found. Proceeding."
 fi
 
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWUPSTREAM="auto"
-
-if tput setaf 1 >/dev/null 2>&1; then
-	C_BLUE=$(tput setaf 4)
-	C_GREEN=$(tput setaf 2)
-	C_YELLOW=$(tput setaf 3)
-	C_RED=$(tput setaf 1)
-	C_CYAN=$(tput setaf 6)
-	C_RESET=$(tput sgr0)
-else
-	C_BLUE='\033[0;34m'
-	C_GREEN='\033[0;32m'
-	C_YELLOW='\033[0;33m'
-	C_RED='\033[0;31m'
-	C_CYAN='\033[0;36m'
-	C_RESET='\033[0m'
+if ! source "$HOME/.config/bash/alert" >/dev/null 2>&1; then
+	echo "No alert script found. Proceeding."
 fi
-
-PS1="\n\[${C_CYAN}\]\u@\h\[${C_RESET}\]:\[${C_YELLOW}\]\w\n"
-PS1+="\$(__git_ps1 \" \[${C_GREEN}\](%s)\")"
-PS1+="\$(if [ \$? != 0 ]; then echo \"\[${C_RED}\](\$?)\"; fi) "
-PS1+="\[${C_RESET}\]\\$ "
-
-case "$TERM" in
-xterm* | rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
-*) ;;
-esac
-
-alias t='todo.sh -c+@f'
-
-[ -x /usr/bin/lesspipe.sh ] && eval "$(SHELL=/bin/bash lesspipe.sh)"
