@@ -30,5 +30,14 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[g]oto [D]eclaration" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[g]oto [d]efinition" })
 
--- Slime
-vim.keymap.set("n", "<c-c><c-c>", "<cmd>:SlimeSend<CR>", { noremap = true, desc = "SlimeSend" })
+--make
+vim.keymap.set("n", "<leader>mm", ":make<CR>", { buffer = true, desc = "Run Make" })
+vim.keymap.set("n", "<leader>mr", function()
+	local logs = {}
+
+	vim.system({ "make", "run" }, function()
+		vim.schedule(function()
+			vim.fn.setqflist({}, "a", { title = "Logs", lines = logs })
+		end)
+	end)
+end, { buffer = true, desc = "Run Make" })

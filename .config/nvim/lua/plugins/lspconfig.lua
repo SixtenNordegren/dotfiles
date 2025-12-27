@@ -46,7 +46,14 @@ return {
 			},
 			texlab = {},
 		}
-
+		vim.diagnostic.handlers["quickfix"] = {
+			show = function(_, _, _, _)
+				vim.diagnostic.setqflist({ open = false })
+			end,
+			hide = function(_, _)
+				vim.fn.setqflist({}, "r")
+			end,
+		}
 		require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(servers or {})
