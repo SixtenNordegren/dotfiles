@@ -4,7 +4,6 @@ font pango:Hack Nerd Font Mono 13
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id dunst
-# exec --no-startup-id xrdb -merge ~/.config/xterm/Xresources
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id ssh-add
@@ -30,21 +29,20 @@ bindsym F12 exec "~/.config/i3/scripts/sv_with_caps.sh"
 
 bindsym $mod+Shift+t exec "~/.config/i3/scripts/toggle_tv.sh"
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+k focus left
+bindsym $mod+n focus down
+bindsym $mod+e focus up
+bindsym $mod+i focus right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+k move left
+bindsym $mod+Shift+n move down
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+i move right
 
 bindsym $mod+f fullscreen toggle
 
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 bindsym $mod+Shift+space floating toggle
 
@@ -68,9 +66,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 for_window [class="^.*"] border pixel 0
 mode "resize" {

@@ -11,7 +11,7 @@ if ! '/usr/local/share/sysconf/dotfiles/.config/i3/scripts/xmodmap' >'/tmp/xmodm
 	echo 'xmodmap crash.' >>'/tmp/xmodmap_custom.log.txt'
 fi
 
-BROWSER_DESKTOP=zen-browser.desktop
+BROWSER_DESKTOP=org.qutebrowser.qutebrowser.desktop
 xdg-mime default "$BROWSER_DESKTOP" x-scheme-handler/http
 xdg-mime default "$BROWSER_DESKTOP" x-scheme-handler/https
 xdg-mime default "$BROWSER_DESKTOP" text/html

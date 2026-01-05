@@ -5,15 +5,16 @@ return {
 	---@type snacks.Config
 	opts = {
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
-		explorer = { enabled = true },
+		dashboard = { enabled = false },
+		explorer = { enabled = false },
 		indent = { enabled = true },
 		input = { enabled = true },
 		notifier = {
-			enabled = true,
+			enabled = false,
 			timeout = 3000,
 		},
-		picker = { enabled = true },
+		notify = { enabled = false },
+		picker = { enabled = false },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
@@ -24,6 +25,7 @@ return {
 				wo = { wrap = true }, -- Wrap notifications
 			},
 		},
+		terminal = { enabled = false },
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
