@@ -1,0 +1,16 @@
+font-family = "Hack Nerd Font Mono"
+font-size = 16
+background = "#000000"
+foreground = "#c5c8c6"
+cursor-color = "#ffcc00"
+scrollback-limit = 3000000
+window-decoration = "none"
+window-padding-x = 0
+window-padding-y = 0
+confirm-close-surface = false
+cursor-style-blink = false
+term = "xterm-256color"
+bell-features = ""
+shell-integration-features = "no-cursor,no-title"
+app-notifications = "false"
+
