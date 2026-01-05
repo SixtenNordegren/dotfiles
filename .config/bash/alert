@@ -1,0 +1,14 @@
+#!/bin/bash
+
+alert() {
+	local icon
+	local errorcode="$?"
+	if [ $errorcode = 0 ]; then
+		icon="terminal"
+	else
+		icon="error"
+	fi
+	local last_command
+	last_command=$(history 1 | sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')
+	notify-send --urgency=low -i "$icon" "Command Finished" "$last_command"
+}

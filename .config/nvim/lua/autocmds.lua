@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		vim.cmd("VimtexView")
 	end,
 })
+
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VimtexEventQuit",
 	command = "VimtexClean",
@@ -48,6 +49,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		vim.fn.jobstart("./gradlew --no-rebuild build")
 	end,
 })
+
 -- HTML
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "html",
