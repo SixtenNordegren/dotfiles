@@ -10,13 +10,6 @@ exec --no-startup-id ssh-add
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
-bindsym F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym F4 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym F6 exec --no-startup-id light -A 5
-bindsym F5 exec --no-startup-id light -U 5
-
 floating_modifier $mod
 
 set $TERMINAL ghostty
@@ -29,15 +22,15 @@ bindsym F12 exec "~/.config/i3/scripts/sv_with_caps.sh"
 
 bindsym $mod+Shift+t exec "~/.config/i3/scripts/toggle_tv.sh"
 
-bindsym $mod+k focus left
-bindsym $mod+n focus down
-bindsym $mod+e focus up
-bindsym $mod+i focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-bindsym $mod+Shift+k move left
-bindsym $mod+Shift+n move down
-bindsym $mod+Shift+e move up
-bindsym $mod+Shift+i move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 bindsym $mod+f fullscreen toggle
 
@@ -86,7 +79,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-status_command i3status
-mode hide
+		  status_command i3status
+		  mode hide
 }
 
