@@ -1,3 +1,0 @@
-return {
-	-- "lucc/nvimpager",
-}

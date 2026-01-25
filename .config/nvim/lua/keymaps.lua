@@ -31,7 +31,7 @@ vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[g]oto [D]eclaratio
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[g]oto [d]efinition" })
 
 --make
-vim.keymap.set("n", "<leader>mm", ":make<CR>", { buffer = true, desc = "Run Make" })
+vim.keymap.set("n", "<leader>mm", ":make<CR>", { buffer = false, desc = "Run Make" })
 vim.keymap.set("n", "<leader>mr", function()
 	local logs = {}
 
@@ -40,4 +40,4 @@ vim.keymap.set("n", "<leader>mr", function()
 			vim.fn.setqflist({}, "a", { title = "Logs", lines = logs })
 		end)
 	end)
-end, { buffer = true, desc = "Run Make" })
+end, { buffer = false, desc = "Run Make" })
