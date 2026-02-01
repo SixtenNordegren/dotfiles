@@ -13,7 +13,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 set $TERMINAL ghostty
-bindsym $mod+Return exec ghostty -e tmux
+bindsym $mod+Return exec ghostty
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show combi
 

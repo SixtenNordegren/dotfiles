@@ -13,4 +13,3 @@ term = "xterm-256color"
 bell-features = ""
 shell-integration-features = "no-cursor,no-title"
 app-notifications = "false"
-

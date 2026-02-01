@@ -8,8 +8,6 @@ vim.keymap.set("n", "<leader>lf", function()
 end, { desc = "Format file" })
 
 -- Movement between buffers
-vim.keymap.set("n", "<leader>bb", "<cmd>:bp<CR>", { desc = "Go to previous buffer" })
-vim.keymap.set("n", "<leader>bn", "<cmd>:bn<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "<leader>bc", "<cmd>:bdel<CR>", { desc = "Delete current buffer" })
 
 -- netrw
