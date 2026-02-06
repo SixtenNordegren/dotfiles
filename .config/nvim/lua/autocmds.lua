@@ -1,5 +1,14 @@
 local group = vim.api.nvim_create_augroup("Filetypesettings", { clear = true })
 
+-- h
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.h",
+	callback = function()
+		vim.o.filetype = "c"
+	end,
+	group = group,
+})
+
 -- sage
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.sage",

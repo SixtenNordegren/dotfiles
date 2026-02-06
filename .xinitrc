@@ -7,9 +7,7 @@ if [ -f '/usr/local/bin/monitors_local' ]; then
 	fi
 fi
 
-if ! '/usr/local/share/sysconf/dotfiles/.config/i3/scripts/xmodmap' >'/tmp/xmodmap_custom.log.txt'; then
-	echo 'xmodmap crash.' >>'/tmp/xmodmap_custom.log.txt'
-fi
+setxkbmap us -variant colemak
 
 BROWSER_DESKTOP=org.qutebrowser.qutebrowser.desktop
 xdg-mime default "$BROWSER_DESKTOP" x-scheme-handler/http

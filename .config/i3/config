@@ -17,9 +17,6 @@ bindsym $mod+Return exec ghostty
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show combi
 
-bindsym F11 exec "~/.config/i3/scripts/us_with_caps.sh"
-bindsym F12 exec "~/.config/i3/scripts/sv_with_caps.sh"
-
 bindsym $mod+Shift+t exec "~/.config/i3/scripts/toggle_tv.sh"
 
 bindsym $mod+h focus left
