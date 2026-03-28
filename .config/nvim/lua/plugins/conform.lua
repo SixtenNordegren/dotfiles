@@ -38,6 +38,7 @@ return {
 			java = { "google-java-format" },
 			groovy = { "npm-groovy-lint" },
 			c = { "clang-format" },
+			makefile = { "mbake" },
 		},
 	},
 }

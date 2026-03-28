@@ -27,6 +27,8 @@ vim.opt.tabstop = 3
 vim.g.auto_open_quickfix = 0
 -- vim.cmd([[syntax enable]])
 
+vim.cmd([[colorscheme habamax]])
+
 vim.opt.conceallevel = 2
 
 -- vim.g.zig_fmt_autosave = 0

@@ -30,6 +30,7 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[g]oto [d]efinition"
 
 --make
 vim.keymap.set("n", "<leader>mm", ":make<CR>", { buffer = false, desc = "Run Make" })
+vim.keymap.set("n", "<leader>mc", ":make clean<CR>", { buffer = false, desc = "Make Clean" })
 vim.keymap.set("n", "<leader>mr", function()
 	local logs = {}
 
