@@ -45,7 +45,11 @@ do
 	})
 	require("quicker").setup({})
 	require("gitsigns").setup({})
-	require("telescope").setup({})
+	require("telescope").setup({
+		defaluts = {
+			layout_strategy = "horizontal";
+		}
+	})
 	require("mason").setup({})
 	local capabilities = cmp_lsp.default_capabilities()
 
