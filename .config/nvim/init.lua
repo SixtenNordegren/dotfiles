@@ -42,13 +42,18 @@ do
 			{ name = "path" },
 			{ name = "buffer" },
 		},
+		mapping = {
+			["<C-n>"] = cmp.mapping.select_next_item(),
+			["<C-p>"] = cmp.mapping.select_prev_item(),
+			["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		},
 	})
 	require("quicker").setup({})
 	require("gitsigns").setup({})
 	require("telescope").setup({
 		defaluts = {
-			layout_strategy = "horizontal";
-		}
+			layout_strategy = "horizontal",
+		},
 	})
 	require("mason").setup({})
 	local capabilities = cmp_lsp.default_capabilities()
@@ -126,5 +131,4 @@ do
 	vim.keymap.set("n", "[b", ":tabn<CR>")
 	vim.keymap.set("n", "]b", ":tabp<CR>")
 	vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
-
 end
