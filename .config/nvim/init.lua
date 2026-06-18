@@ -62,10 +62,12 @@ do
 	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
-			ts = { "ts-standard" },
-			vue = { "oxfmt" },
+			typescript = { "biome" },
+			javascript = { "biome" },
+			vue = { "biome" },
 		},
 	})
+	-- require("conform").formatters.biome = { command = "pnpm biome" }
 	require("quicker").setup({})
 	require("gitsigns").setup({})
 
