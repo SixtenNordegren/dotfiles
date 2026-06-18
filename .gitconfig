@@ -3,8 +3,10 @@
 	email = sixten.nordegren@gmail.com
 [core]
 	editor = nvim
-	pager = nvim -R
-[color]
-	pager = no
+	pager = ""
 [init]
 	defaultBranch = main
+[diff]
+    tool = nvim_difftool
+[difftool "nvim_difftool"]
+    cmd = nvim -d "\"$LOCAL\" \"$REMOTE\""

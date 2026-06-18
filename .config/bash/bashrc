@@ -50,3 +50,5 @@ fi
 if ! source "$HOME/.config/bash/alert" >/dev/null 2>&1; then
 	echo "No alert script found. Proceeding."
 fi
+
+export BW_SESSION="BygEta9Hf0vH8PsHUxcsiUuGO/0fmhzjORyI+ccsJaZVpgflvF5i9qRyZ1bx67SU39LD/shO5GAgfxagi9T2YA=="

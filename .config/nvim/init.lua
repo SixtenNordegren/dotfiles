@@ -109,15 +109,16 @@ do
 	vim.keymap.set("n", "]w", "<C-w>l", { desc = "Move to the *right* window." })
 	vim.keymap.set("n", "[w", "<C-w>h", { desc = "Move to the *left* window." })
 
-	-- vim.api.nvim_create_user_command("GitBlameLine", function()
-	-- 	local line_number = vim.fn.line(".")
-	-- 	local filename = vim.api.nvim_buf_get_name(0)
-	-- 	print(vim.system({ "git", "blame", "-L", line_number .. ",+1", filename }):wait().stdout)
-	-- end, { desc = "Print the git blame for the current line." })
-	--
+	vim.api.nvim_create_user_command("GitBlameLine", function()
+		local line_number = vim.fn.line(".")
+		local filename = vim.api.nvim_buf_get_name(0)
+		print(vim.system({ "git", "blame", "-L", line_number .. ",+1", filename }):wait().stdout)
+	end, { desc = "Print the git blame for the current line." })
+
 	vim.keymap.set("n", "<leader>u", ":Undotree<CR>")
 
 	vim.keymap.set("n", "[b", ":tabn<CR>")
 	vim.keymap.set("n", "]b", ":tabp<CR>")
 	vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
+
 end
