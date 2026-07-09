@@ -1,0 +1,2 @@
+-- nvim.undotree is a built-in runtime package; init.lua eagerly
+-- `packadd`s it. No setup needed; the <leader>u keymap is in lua/keymaps.lua.
