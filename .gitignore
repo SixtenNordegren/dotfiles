@@ -1,7 +1,10 @@
 .config/nvim/lazy-lock.json
 .config/vifm/vifminfo.json*
+.config/ssh/*hosts*
+.config/ssh/id*
 .ssh/*hosts*
 .ssh/id*
+.ssh/*
 # Ignore Vim swap files
 *.swp
 *.swo
