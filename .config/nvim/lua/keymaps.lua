@@ -18,17 +18,22 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.keymap.set("n", "]w", "<C-w>l", { desc = "Move to the *right* window." })
 vim.keymap.set("n", "[w", "<C-w>h", { desc = "Move to the *left* window." })
 
+-- Buffer navigation
+vim.keymap.set("n", "[b", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "]b", ":bprev<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bc", "bdelete<CR>", { desc = "Clear current buffer"})
+vim.keymap.set("n", "<leader>bd", "%bwipeout<CR>", {desc = "Clear all buffers except current"})
+
 -- Tab navigation
-vim.keymap.set("n", "[b", ":tabn<CR>", { desc = "Next tab" })
-vim.keymap.set("n", "]b", ":tabp<CR>", { desc = "Previous tab" })
+vim.keymap.set("n", "[t", ":tabn<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "]t", ":tabp<CR>", { desc = "Previous tab" })
 vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "New tab" })
 
--- Git
-vim.api.nvim_create_user_command("GitBlameLine", function()
-	local line_number = vim.fn.line(".")
-	local filename = vim.api.nvim_buf_get_name(0)
-	print(vim.system({ "git", "blame", "-L", line_number .. ",+1", filename }):wait().stdout)
-end, { desc = "Print the git blame for the current line." })
+-- Disable Arrow keys. 
+vim.keymap.set("n", "<left>", "<Nop>")
+vim.keymap.set("n", "<right>", "<Nop>")
+vim.keymap.set("n", "<up>", "<Nop>")
+vim.keymap.set("n", "<down>", "<Nop>")
 
 -- File utilities
 vim.keymap.set("n", "<leader>fy", function()

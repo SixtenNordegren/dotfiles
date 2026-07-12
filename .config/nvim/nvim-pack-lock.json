@@ -64,6 +64,10 @@
       "rev": "1614d466df53899f11dd5395eaac3c09a275c384",
       "src": "https://github.com/filipdutescu/renamer.nvim"
     },
+    "taskwarrior.nvim": {
+      "rev": "5383427b88912ff3c37653d76e48b1fc197844dc",
+      "src": "https://github.com/ribelo/taskwarrior.nvim"
+    },
     "telescope-ui-select.nvim": {
       "rev": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2",
       "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim"
